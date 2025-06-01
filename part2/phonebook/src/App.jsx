@@ -157,12 +157,21 @@ const App = () => {
     personService
       .create(personObject)
       .then(resPerson => {
+        console.log(resPerson)
         setPersons(persons.concat(resPerson))
         setNewName('')
         setNewNumber('')
         setMessageSuccess(`Added ${resPerson.name}`)
         setTimeout(() => {
           setMessageSuccess(null)
+        }, 5000)
+      })
+      .catch(error => {
+        console.log(error)
+        // console.log(error.response.data)
+        setMessageError(`${error.response.data.error}`)
+        setTimeout(() => {
+          setMessageError(null)
         }, 5000)
       })
 
